@@ -1,4 +1,3 @@
-import math
 import pygame
 from settings import *
 from custom_font import CustomPixelFont
