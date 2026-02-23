@@ -50,7 +50,7 @@ YAIR_SPEED = 150
 YAIR_CHASE_RADIUS = 400
 
 BUS_SPEED = 250
-BUS_TRIGGER_RADIUS = 100 # How close the bus needs to get to Shalev to spawn Ofir
+BUS_TRIGGER_RADIUS = 150 # How close the bus needs to get to Shalev to spawn Ofir
 
 OFIR_SPEED = 150 # Driver chasing speed
 OFIR_GIVE_UP_RADIUS = 200 # Distance at which Ofir gives up and returns to bus
