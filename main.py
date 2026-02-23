@@ -125,7 +125,7 @@ class Game:
             self.bus.active_driver = None
             ofir = Ofir(self.bus.x // TILE_SIZE, self.bus.y // TILE_SIZE, self.grid, self.bus)
             self.enemies.add(ofir)
-            print("Shalev Goy!")
+            print("Shalev Bad!")
             
         px, py = int(self.player.x // TILE_SIZE), int(self.player.y // TILE_SIZE)
         if 0 <= px < GRID_WIDTH and 0 <= py < GRID_HEIGHT:
@@ -167,11 +167,11 @@ class Game:
             self.screen.blit(enemy.image, cam_rect)
             
             if isinstance(enemy, Bus):
-                text = self.ui.small_font.render("Ofir Tours, Shalev Goy", True, WHITE)
+                text = self.ui.small_font.render("Ofir Tours, Shalev Bad!", True, WHITE)
                 self.screen.blit(text, (cam_rect.centerx - text.get_width() // 2, cam_rect.top - 20))
                 
             elif isinstance(enemy, Ofir):
-                text = self.ui.small_font.render("Shalev Goy!", True, WHITE)
+                text = self.ui.small_font.render("Shalev Bad!", True, WHITE)
                 self.screen.blit(text, (cam_rect.centerx - text.get_width() // 2, cam_rect.top - 20))
                 
         self.ui.draw_stamina_bar(self.player.stamina)

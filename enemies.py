@@ -81,7 +81,7 @@ class Enemy(pygame.sprite.Sprite):
 
 class Haredi(Enemy):
     def __init__(self, x, y, grid):
-        super().__init__(x, y, grid, RED, HAREDIM_SPEED, HAREDIM_CHASE_RADIUS)
+        super().__init__(x, y, grid, GRAY, HAREDIM_SPEED, HAREDIM_CHASE_RADIUS)
         # Add black hats
         w, h = TILE_SIZE - 10, TILE_SIZE - 10
         pygame.draw.rect(self.image, DARK_HAT, (w//2-8, h//2-12, 16, 4))
