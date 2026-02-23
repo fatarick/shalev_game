@@ -41,7 +41,7 @@ class Player(pygame.sprite.Sprite):
         if self.touch_controls:
             touch_dx, touch_dy, sprint = self.touch_controls.get_input()
         
-        if (keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT] or sprint) and self.stamina >= 0:
+        if (keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT] or sprint) and self.stamina > 0:
             speed = PLAYER_RUN_SPEED
             self.is_running = True
         else:
