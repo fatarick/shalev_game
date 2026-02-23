@@ -57,7 +57,7 @@ class UI:
         text = self.font.render(msg, True, color)
         self.surface.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 3))
         
-        restart_text = self.small_font.render("Press SPACE/Touch to restart", True, WHITE)
+        restart_text = self.small_font.render("Press SPACE or Tap the Screen to restart", True, WHITE)
         self.surface.blit(restart_text, (WIDTH // 2 - restart_text.get_width() // 2, HEIGHT - 80))
 
     def draw_arrow(self, angle):
