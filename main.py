@@ -176,13 +176,6 @@ class Game:
                 
         self.ui.draw_stamina_bar(self.player.stamina)
         
-        px = self.player.rect.centerx
-        py = self.player.rect.centery
-        mx = self.mall_pos[0] * TILE_SIZE + TILE_SIZE / 2
-        my = self.mall_pos[1] * TILE_SIZE + TILE_SIZE / 2
-        angle = math.atan2(my - py, mx - px)
-        self.ui.draw_arrow(angle)
-        
         if self.state != "PLAYING":
             self.ui.draw_game_over(self.state)
             
