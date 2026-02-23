@@ -1,6 +1,6 @@
 # Screen attributes
-WIDTH = 800
-HEIGHT = 600
+WIDTH = 1280
+HEIGHT = 720
 FPS = 60
 
 # Tile sizes
@@ -46,11 +46,11 @@ HAREDIM_COUNT = 30
 HAREDIM_SPEED = 80
 HAREDIM_CHASE_RADIUS = 200
 
-YAIR_SPEED = 50
+YAIR_SPEED = 100
 YAIR_CHASE_RADIUS = 300
 
-BUS_SPEED = 300
-BUS_TRIGGER_RADIUS = 150 # How close the bus needs to get to Shalev to spawn Ofir
+BUS_SPEED = 250
+BUS_TRIGGER_RADIUS = 100 # How close the bus needs to get to Shalev to spawn Ofir
 
 OFIR_SPEED = 150 # Driver chasing speed
 OFIR_GIVE_UP_RADIUS = 300 # Distance at which Ofir gives up and returns to bus
