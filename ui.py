@@ -59,17 +59,3 @@ class UI:
         
         restart_text = self.small_font.render("Press SPACE or Tap the Screen to restart", True, WHITE)
         self.surface.blit(restart_text, (WIDTH // 2 - restart_text.get_width() // 2, HEIGHT - 80))
-
-    def draw_arrow(self, angle):
-        cx = WIDTH // 2
-        cy = HEIGHT // 2 - 60
-        
-        length = 25
-        width_len = 12
-        
-        p1 = (cx + math.cos(angle) * length, cy + math.sin(angle) * length)
-        p2 = (cx + math.cos(angle + 2.5) * width_len, cy + math.sin(angle + 2.5) * width_len)
-        p3 = (cx + math.cos(angle - 2.5) * width_len, cy + math.sin(angle - 2.5) * width_len)
-        
-        pygame.draw.polygon(self.surface, GREEN, [p1, p2, p3])
-        pygame.draw.polygon(self.surface, BLACK, [p1, p2, p3], 2)
