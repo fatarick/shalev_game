@@ -14,6 +14,7 @@ WHITE = (255, 255, 255)
 GRAY = (100, 100, 100) # Buildings
 DARK_GRAY = (50, 50, 50) # Roads
 BLUE = (0, 0, 255) # Shalev
+RED = (255, 0, 0) # Lose screen
 GREEN = (0, 255, 0) # Mall "RD Arad"
 GRAY = (82, 82, 82) # Haredim
 YELLOW = (255, 255, 0) # Yair Maayan
