@@ -2,7 +2,7 @@ import pygame
 from settings import *
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, start_x, start_y, grid):
+    def __init__(self, start_x, start_y, grid, touch_controls=None):
         super().__init__()
         self.image = pygame.Surface((TILE_SIZE - 10, TILE_SIZE - 10), pygame.SRCALPHA)
         self.draw_sprite()
@@ -13,6 +13,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.center = (self.x, self.y)
         
         self.grid = grid
+        self.touch_controls = touch_controls
         
         self.stamina = PLAYER_STAMINA_MAX
         self.is_running = False
@@ -36,7 +37,11 @@ class Player(pygame.sprite.Sprite):
         self.dx, self.dy = 0, 0
         keys = pygame.key.get_pressed()
         
-        if (keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]) and self.stamina > 0:
+        touch_dx, touch_dy, sprint = 0, 0, False
+        if self.touch_controls:
+            touch_dx, touch_dy, sprint = self.touch_controls.get_input()
+        
+        if (keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT] or sprint) and self.stamina > 0:
             speed = PLAYER_RUN_SPEED
             self.is_running = True
         else:
@@ -52,14 +57,18 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_d]:
             self.dx = speed
             
-        if self.dx != 0 and self.dy != 0:
+        if touch_dx != 0 or touch_dy != 0:
+            self.dx = touch_dx * speed
+            self.dy = touch_dy * speed
+            
+        if self.dx != 0 and self.dy != 0 and touch_dx == 0 and touch_dy == 0:
             self.dx *= 0.7071
             self.dy *= 0.7071
 
     def collide_with_walls(self, dir):
         # Create padding to make walking in roads much easier and avoid getting caught on corners
-        pad_x = 6
-        pad_y = 6
+        pad_x = 10
+        pad_y = 10
         corners = [
             (self.rect.left + pad_x, self.rect.top + pad_y),
             (self.rect.right - pad_x, self.rect.top + pad_y),

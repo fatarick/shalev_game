@@ -2,11 +2,13 @@ import pygame
 import sys
 import random
 import math
+import asyncio
 from settings import *
 from map_gen import generate_map
 from player import Player
 from enemies import Haredi, YairMaayan, Bus, Ofir
 from ui import UI
+from touch_controls import TouchControls
 
 class Camera:
     def __init__(self, width, height):
@@ -39,10 +41,12 @@ class Game:
         self.clock = pygame.time.Clock()
         self.ui = UI(self.screen)
         self.state = "PLAYING" # PLAYING, WIN, LOSE
+        self.touch_controls = TouchControls(self.screen.get_rect())
+        self.is_mobile = False
         
     def new_game(self):
         self.grid, self.start_pos, self.mall_pos = generate_map()
-        self.player = Player(self.start_pos[0], self.start_pos[1], self.grid)
+        self.player = Player(self.start_pos[0], self.start_pos[1], self.grid, self.touch_controls)
         self.camera = Camera(GRID_WIDTH * TILE_SIZE, GRID_HEIGHT * TILE_SIZE)
         
         self.enemies = pygame.sprite.Group()
@@ -74,7 +78,7 @@ class Game:
 
         self.state = "PLAYING"
 
-    def run(self):
+    async def run(self):
         self.new_game()
         while True:
             dt = self.clock.tick(FPS) / 1000.0
@@ -82,12 +86,20 @@ class Game:
             if self.state == "PLAYING":
                 self.update(dt)
             self.draw()
+            await asyncio.sleep(0)
 
     def events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            
+            if event.type in (pygame.FINGERDOWN, pygame.FINGERMOTION, pygame.FINGERUP):
+                self.is_mobile = True
+                res = self.touch_controls.process_event(event)
+                if res == "tap" and self.state in ["WIN", "LOSE", "LOSE_HAREDIM", "LOSE_YAIR", "LOSE_OFIR"]:
+                    self.new_game()
+                    
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and self.state in ["WIN", "LOSE", "LOSE_HAREDIM", "LOSE_YAIR", "LOSE_OFIR"]:
                     self.new_game()
@@ -113,7 +125,7 @@ class Game:
             self.bus.active_driver = None
             ofir = Ofir(self.bus.x // TILE_SIZE, self.bus.y // TILE_SIZE, self.grid, self.bus)
             self.enemies.add(ofir)
-            print("Shalev Bad!")
+            print("Shalev Goy!")
             
         px, py = int(self.player.x // TILE_SIZE), int(self.player.y // TILE_SIZE)
         if 0 <= px < GRID_WIDTH and 0 <= py < GRID_HEIGHT:
@@ -145,17 +157,21 @@ class Game:
                     pygame.draw.rect(self.screen, WINDOW_COLOR, (cam_rect.x + 8, cam_rect.y + 8, 8, 8))
                     pygame.draw.rect(self.screen, WINDOW_COLOR, (cam_rect.right - 16, cam_rect.y + 8, 8, 8))
                 
-        self.screen.blit(self.player.image, self.camera.apply(self.player))
+        cam_player_rect = self.camera.apply(self.player)
+        self.screen.blit(self.player.image, cam_player_rect)
+        
+        player_text = self.ui.small_font.render("Shalev", True, WHITE)
+        self.screen.blit(player_text, (cam_player_rect.centerx - player_text.get_width() // 2, cam_player_rect.top - 20))
         for enemy in self.enemies:
             cam_rect = self.camera.apply(enemy)
             self.screen.blit(enemy.image, cam_rect)
             
             if isinstance(enemy, Bus):
-                text = self.ui.small_font.render("Ofir Tours, Shalev Bad", True, WHITE)
+                text = self.ui.small_font.render("Ofir Tours, Shalev Goy", True, WHITE)
                 self.screen.blit(text, (cam_rect.centerx - text.get_width() // 2, cam_rect.top - 20))
                 
             elif isinstance(enemy, Ofir):
-                text = self.ui.small_font.render("Shalev Bad!", True, WHITE)
+                text = self.ui.small_font.render("Shalev Goy!", True, WHITE)
                 self.screen.blit(text, (cam_rect.centerx - text.get_width() // 2, cam_rect.top - 20))
                 
         self.ui.draw_stamina_bar(self.player.stamina)
@@ -170,8 +186,11 @@ class Game:
         if self.state != "PLAYING":
             self.ui.draw_game_over(self.state)
             
+        if self.is_mobile:
+            self.touch_controls.draw(self.screen)
+            
         pygame.display.flip()
 
 if __name__ == "__main__":
     game = Game()
-    game.run()
+    asyncio.run(game.run())

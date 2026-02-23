@@ -1,0 +1,46 @@
+================================
+ SHALEV BARKIN - HALAMISH RUN
+          TUTORIAL
+================================
+
+Welcome to Halamish Run! You play as Shalev Barkin, trying to survive the neighborhood and make it to the "RD Arad" mall.
+
+OBJECTIVE:
+----------
+Your goal is to reach the RD Arad mall to win the game. 
+Look for the green arrow pointing you in the right direction!
+The mall is marked by the large bright green building.
+
+CONTROLS:
+---------
+W - Move Up
+S - Move Down
+A - Move Left
+D - Move Right
+SHIFT - Sprint! (Uses Stamina)
+SPACE - Restart (Only when Game Over or Win screen is shown)
+
+STAMINA:
+--------
+Sprinting drains your blue stamina bar in the top left. 
+If it runs out, you will walk slowly until you let go of shift and let it recharge. 
+Manage your stamina carefully so you have energy to run when you need it!
+
+ENEMIES:
+--------
+Watch out for the following enemies roaming the streets:
+
+1. The Dosim (Haredim - Red Bodies, Black Hats)
+   There are many of them wandering around. Get too close, and they will chase you!
+
+2. Yair Maayan (Yellow Body, Orange Hair)
+   Moves faster than the regular Dosim and will spot you from further away. 
+
+3. Ofir Tours (Orange Bus)
+   The bus moves very fast across the map. If you get too close to it, the driver, Ofir, will jump out to chase you! 
+   "Ofir Tours, Shalev Goy!"
+
+4. Ofir (Cyan Body, Black Hair)
+   The driver of the bus. He is extremely fast! Turn around and sprint away! If you manage to outrun him far enough, he will give up and return to his bus.
+
+Good luck, and don't let them catch you!

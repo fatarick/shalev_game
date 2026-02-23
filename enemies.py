@@ -114,8 +114,7 @@ class Ofir(Enemy):
             # Returning to Bus
             self.chase(self.bus)
             if self.distance_to(self.bus) < 30:
-                self.bus.active_driver = True
-                self.bus.spawned_ofir = False
+                self.bus.resume_driving()
                 self.kill() # Remove Ofir from sprite group
                 return
                 
@@ -170,6 +169,11 @@ class Bus(pygame.sprite.Sprite):
         dx, dy = random.choice(dirs)
         self.dx = dx * BUS_SPEED
         self.dy = dy * BUS_SPEED
+
+    def resume_driving(self):
+        self.active_driver = True
+        self.spawned_ofir = False
+        self.pick_random_direction()
 
     def update(self, dt, player):
         if not self.active_driver:
