@@ -37,7 +37,7 @@ class Game:
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
-        pygame.display.set_caption("Shalev Barkin - Halamish Run")
+        pygame.display.set_caption("Shalev Barkin - The Game")
         self.clock = pygame.time.Clock()
         self.ui = UI(self.screen)
         self.state = "PLAYING" # PLAYING, WIN, LOSE
