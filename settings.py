@@ -16,6 +16,7 @@ DARK_GRAY = (50, 50, 50) # Roads
 BLUE = (0, 0, 255) # Shalev
 GREEN = (0, 255, 0) # Mall "RD Arad"
 GRAY = (82, 82, 82) # Haredim
+RED = (255, 0, 0) #Loss Screen
 YELLOW = (255, 255, 0) # Yair Maayan
 ORANGE = (255, 165, 0) # Bus
 CYAN = (0, 255, 255) # Ofir
