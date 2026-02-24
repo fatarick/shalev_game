@@ -30,7 +30,7 @@ ENEMIES:
 --------
 Watch out for the following enemies roaming the streets:
 
-1. The Dosim (Haredim - Red Bodies, Black Hats)
+1. The Dosim (Haredim - Gray Bodies, Black Hats)
    There are many of them wandering around. Get too close, and they will chase you!
 
 2. Yair Maayan (Yellow Body, Orange Hair)
@@ -38,7 +38,7 @@ Watch out for the following enemies roaming the streets:
 
 3. Ofir Tours (Orange Bus)
    The bus moves very fast across the map. If you get too close to it, the driver, Ofir, will jump out to chase you! 
-   "Ofir Tours, Shalev Goy!"
+   "Ofir Tours, Shalev Bad!"
 
 4. Ofir (Cyan Body, Black Hair)
    The driver of the bus. He is extremely fast! Turn around and sprint away! If you manage to outrun him far enough, he will give up and return to his bus.
