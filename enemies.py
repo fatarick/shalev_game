@@ -87,9 +87,9 @@ class Haredi(Enemy):
         pygame.draw.rect(self.image, DARK_HAT, (w//2-8, h//2-12, 16, 4))
         pygame.draw.rect(self.image, DARK_HAT, (w//2-6, h//2-16, 12, 4))
 
-class YairMaayan(Enemy):
+class Mayor(Enemy):
     def __init__(self, x, y, grid):
-        super().__init__(x, y, grid, YELLOW, YAIR_SPEED, YAIR_CHASE_RADIUS)
+        super().__init__(x, y, grid, YELLOW, MAYOR_SPEED, MAYOR_CHASE_RADIUS)
         w, h = TILE_SIZE - 10, TILE_SIZE - 10
         # Draw special hair
         pygame.draw.rect(self.image, ORANGE, (w//2-6, h//2-14, 12, 4))

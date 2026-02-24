@@ -45,8 +45,8 @@ class UI:
         else:
             if state == "LOSE_HAREDIM":
                 msg = "You lost! The Dosim caught Shalev."
-            elif state == "LOSE_YAIR":
-                msg = "You lost! Yair Maayan caught Shalev."
+            elif state == "LOSE_MAYOR":
+                msg = "You lost! The Mayor caught Shalev."
             elif state == "LOSE_OFIR":
                 msg = "You lost! Ofir caught Shalev."
             else:

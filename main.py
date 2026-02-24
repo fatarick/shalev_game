@@ -6,7 +6,7 @@ import asyncio
 from settings import *
 from map_gen import generate_map
 from player import Player
-from enemies import Haredi, YairMaayan, Bus, Ofir
+from enemies import Haredi, Mayor, Bus, Ofir
 from ui import UI
 from touch_controls import TouchControls
 
@@ -59,13 +59,13 @@ class Game:
                 self.enemies.add(Haredi(rx, ry, self.grid))
                 spawned_haredim += 1
                 
-        placed_yair = False
-        while not placed_yair:
+        placed_mayor = False
+        while not placed_mayor:
             rx = random.randint(1, GRID_WIDTH - 2)
             ry = random.randint(1, GRID_HEIGHT - 2)
             if self.grid[ry][rx] == 1 and math.hypot(rx - self.start_pos[0], ry - self.start_pos[1]) > 10:
-                self.enemies.add(YairMaayan(rx, ry, self.grid))
-                placed_yair = True
+                self.enemies.add(Mayor(rx, ry, self.grid))
+                placed_mayor = True
                 
         placed_bus = False
         while not placed_bus:
@@ -97,11 +97,11 @@ class Game:
             if event.type in (pygame.FINGERDOWN, pygame.FINGERMOTION, pygame.FINGERUP):
                 self.is_mobile = True
                 res = self.touch_controls.process_event(event)
-                if res == "tap" and self.state in ["WIN", "LOSE", "LOSE_HAREDIM", "LOSE_YAIR", "LOSE_OFIR"]:
+                if res == "tap" and self.state in ["WIN", "LOSE", "LOSE_HAREDIM", "LOSE_MAYOR", "LOSE_OFIR"]:
                     self.new_game()
                     
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE and self.state in ["WIN", "LOSE", "LOSE_HAREDIM", "LOSE_YAIR", "LOSE_OFIR"]:
+                if event.key == pygame.K_SPACE and self.state in ["WIN", "LOSE", "LOSE_HAREDIM", "LOSE_MAYOR", "LOSE_OFIR"]:
                     self.new_game()
 
     def update(self, dt):
@@ -114,8 +114,8 @@ class Game:
             if math.hypot(self.player.rect.centerx - enemy.rect.centerx, self.player.rect.centery - enemy.rect.centery) < 20:
                 if isinstance(enemy, Haredi):
                     self.state = "LOSE_HAREDIM"
-                elif isinstance(enemy, YairMaayan):
-                    self.state = "LOSE_YAIR"
+                elif isinstance(enemy, Mayor):
+                    self.state = "LOSE_MAYOR"
                 elif isinstance(enemy, Ofir):
                     self.state = "LOSE_OFIR"
                 else:
